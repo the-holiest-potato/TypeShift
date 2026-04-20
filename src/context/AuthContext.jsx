@@ -1,7 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
-const API_URL = 'http://localhost:5000/api';
+
+// This line now looks for the Vercel variable first.
+// If it finds it, it adds the '/api' suffix.
+// Otherwise, it defaults to your local machine for development.
+const API_URL = import.meta.env.VITE_API_URL 
+  ? `${import.meta.env.VITE_API_URL}/api` 
+  : 'http://localhost:5000/api';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -17,7 +23,6 @@ export const AuthProvider = ({ children }) => {
       });
       if (response.ok) {
         const history = await response.json();
-        // Transform backend response to match frontend expectations if needed
         const formattedHistory = history.map(test => ({
           id: test.id,
           wpm: test.wpm,
@@ -61,40 +66,48 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (identifier, password) => {
-    const response = await fetch(`${API_URL}/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ identifier, password })
-    });
+    try {
+      const response = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ identifier, password })
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok) {
-      setUser(data.user);
-      localStorage.setItem('token', data.token);
-      await fetchHistory(data.token);
-      return { success: true };
-    } else {
-      return { success: false, message: data.message };
+      if (response.ok) {
+        setUser(data.user);
+        localStorage.setItem('token', data.token);
+        await fetchHistory(data.token);
+        return { success: true };
+      } else {
+        return { success: false, message: data.message };
+      }
+    } catch (error) {
+      return { success: false, message: "Network error. Could not connect to server." };
     }
   };
 
   const register = async (username, email, password) => {
-    const response = await fetch(`${API_URL}/auth/register`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, email, password })
-    });
+    try {
+      const response = await fetch(`${API_URL}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, email, password })
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok) {
-      setUser(data.user);
-      localStorage.setItem('token', data.token);
-      setTestHistory([]);
-      return { success: true };
-    } else {
-      return { success: false, message: data.message };
+      if (response.ok) {
+        setUser(data.user);
+        localStorage.setItem('token', data.token);
+        setTestHistory([]);
+        return { success: true };
+      } else {
+        return { success: false, message: data.message };
+      }
+    } catch (error) {
+      return { success: false, message: "Network error. Could not connect to server." };
     }
   };
 
