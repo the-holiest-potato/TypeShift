@@ -1,0 +1,151 @@
+\documentclass{beamer}
+\usetheme{metropolis} % Using metropolis as it's clean and modern
+
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{amssymb}
+
+% Define TypeShift Colors
+\definecolor{TypeShiftBG}{HTML}{111111}
+\definecolor{TypeShiftPurple}{HTML}{AE81FF}
+\definecolor{TypeShiftText}{HTML}{FFFFFF}
+\definecolor{TypeShiftGray}{HTML}{666666}
+
+% Set Beamer Colors
+\setbeamercolor{background canvas}{bg=TypeShiftBG}
+\setbeamercolor{normal text}{fg=TypeShiftText}
+\setbeamercolor{frametitle}{bg=TypeShiftBG, fg=TypeShiftPurple}
+\setbeamercolor{title}{fg=TypeShiftPurple}
+\setbeamercolor{subtitle}{fg=TypeShiftText}
+\setbeamercolor{section in head/foot}{fg=TypeShiftPurple}
+
+% Customize blocks
+\setbeamercolor{block title}{bg=TypeShiftPurple, fg=TypeShiftBG}
+\setbeamercolor{block body}{bg=TypeShiftPurple!10, fg=TypeShiftText}
+
+\title{TypeShift}
+\subtitle{A WEB-BASED PLATFORM TO PRACTICE AND IMPROVE TYPING}
+\author{TEAM MEMBERS: \\ 
+Aditya Mishra (2400520100008) \\ 
+Anushaka Prasad (2400520100020) \\ 
+Harshit Yadav (2400520100038) \\ 
+Devansh Singh (2400520100032) \\ 
+Darshika Singh (2400520100029)}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Table of Contents}
+    \begin{enumerate}
+        \item Project Overview
+        \item Comparison with Existing Systems
+        \item Technologies and Tools Used
+        \item Project Development Timeline
+        \item Current Progress and Work Status
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Project Overview}
+    TypeShift is a web-based tool built to help users track and improve their typing performance. The platform provides a focused environment for testing speed and accuracy, with a backend designed to store and display progress over time.
+    \vfill
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            \textbf{\color{TypeShiftPurple}Leaderboard:} Data-driven ranking. \\
+            \textbf{\color{TypeShiftPurple}Typing Environment:} Core "testbox" area. \\
+            \textbf{\color{TypeShiftPurple}Navigation Bar:} Quick access header.
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{\color{TypeShiftPurple}Authentication:} Secure login/register. \\
+            \textbf{\color{TypeShiftPurple}Dashboard:} Individual user stats. \\
+            \textbf{\color{TypeShiftPurple}Live Settings:} On-the-fly mode switching.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Project Comparison}
+    \centering
+    \small
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{\color{TypeShiftPurple}Feature} & \textbf{TypeRacer} & \textbf{TypeShift} & \textbf{MonkeyType} \\
+        \midrule
+        Custom word lists & \color{red}$\times$ & \color{green}\checkmark & Limited \\
+        Difficulty levels & \color{red}$\times$ & \color{green}\checkmark & Limited \\
+        Personal progress graph & \color{red}$\times$ & \color{green}\checkmark & \color{green}\checkmark \\
+        Leaderboard & \color{green}\checkmark & \color{green}\checkmark & \color{red}$\times$ \\
+        Reaction on mistype & \color{red}$\times$ & \color{green}\checkmark & \color{red}$\times$ \\
+        Login \& records & \color{green}\checkmark & \color{green}\checkmark & \color{green}\checkmark \\
+        \bottomrule
+    \end{tabular}
+    \vfill
+    \footnotesize \textit{Goal: Achieve these features after implementing a basic prototype.}
+\end{frame}
+
+\begin{frame}{Tools Used}
+    \begin{description}
+        \item[Frontend] JavaScript (ESM), React, HTML5, CSS3, Vite
+        \item[Backend] Node.js, Express.js
+        \item[Database] MongoDB
+        \item[Other Tools] Git, GitHub
+    \end{description}
+    \vfill
+    \begin{block}{Why Vite?}
+        Fast development, instant hot module replacement (HMR), and optimized production builds.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Timeline of the Project}
+    \begin{itemize}
+        \item[\color{TypeShiftPurple}$\bullet$] \textbf{Week 1--2:} Planning \& Research
+        \item[\color{TypeShiftPurple}$\bullet$] \textbf{Week 3--4:} Core Functionality Implementation
+        \item[\color{TypeShiftPurple}$\bullet$] \textbf{Week 5--6:} UI Design \& Development
+        \item[\color{TypeShiftPurple}$\bullet$] \textbf{Week 7--8:} Testing \& Finalization
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Status of Work Done}
+    \begin{columns}[t]
+        \begin{column}{0.33\textwidth}
+            \textbf{\color{green}COMPLETED}
+            \begin{itemize}
+                \scriptsize
+                \item UI/Layout planning
+                \item Core features list
+                \item Figma prototype
+                \item Navigation flow
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.33\textwidth}
+            \textbf{\color{yellow}ONGOING}
+            \begin{itemize}
+                \scriptsize
+                \item React components
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.33\textwidth}
+            \textbf{\color{TypeShiftPurple}PLANNED}
+            \begin{itemize}
+                \scriptsize
+                \item Backend/DB schema
+                \item MongoDB integration
+                \item Real-time logic
+                \item Hosting
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \Huge \color{TypeShiftPurple} The End
+    \vfill
+    \large THANK YOU FOR LISTENING
+\end{frame}
+
+\end{document}
