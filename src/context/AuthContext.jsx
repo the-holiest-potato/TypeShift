@@ -2,8 +2,11 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
+// This line now looks for the Vercel variable first.
+// If it finds it, it adds the '/api' suffix.
+// Otherwise, it defaults to your local machine for development.
 const API_URL = import.meta.env.VITE_API_URL 
-  ? import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api` 
   : 'http://localhost:5000/api';
 
 export const AuthProvider = ({ children }) => {
