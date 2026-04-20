@@ -2,12 +2,28 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
-// This line now looks for the Vercel variable first.
-// If it finds it, it adds the '/api' suffix.
-// Otherwise, it defaults to your local machine for development.
-const API_URL = import.meta.env.VITE_API_URL 
-  ? `${import.meta.env.VITE_API_URL}/api` 
-  : 'http://localhost:5000/api';
+/**
+ * FIXED API_URL LOGIC
+ * This ensures that the URL always starts with https:// if it's not localhost.
+ * This prevents the browser from treating your Railway link as a local folder.
+ */
+const getBaseUrl = () => {
+  const rawUrl = import.meta.env.VITE_API_URL;
+  
+  // 1. If no variable is found or we are on localhost, use local backend
+  if (!rawUrl || rawUrl.includes('localhost')) {
+    return 'http://localhost:5000/api';
+  }
+
+  // 2. Clean the URL: Remove existing protocol and re-add https:// strictly
+  const cleanUrl = rawUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  return `https://${cleanUrl}/api`;
+};
+
+const API_URL = getBaseUrl();
+
+// Debugging log - this will show up in your F12 console
+console.log("🚀 TypeShift API is pointing to:", API_URL);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
